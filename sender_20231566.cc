@@ -81,13 +81,15 @@ int main(int argc, char *argv[]) {
         if (result == NETSIM_ERROR) return 1;
 
         // Record this transmission in the sliding window
-        win_bits[win_idx] = (double)(8 * (2 + P + 4));
+        win_bits[win_idx] = (double)(8 * (P + 4));
         win_nak[win_idx]  = (result == NETSIM_NAK) ? 1 : 0;
         win_idx = (win_idx + 1) % WIN;
         if (win_count < WIN) win_count++;
 
         if (result == NETSIM_ACK)
             pos += P;
+        else
+            ber = min(0.1, ber * 4.0);
 
         // Update BER estimate once we have at least 4 samples
         if (win_count >= 4) {
