@@ -54,12 +54,10 @@ int main(int argc, char *argv[]) {
     // Pre-allocate max frame buffer (2 + 65535 + 4 bytes)
     vector<uint8_t> frame(2 + 65535 + 4);
 
-    // Start conservative (worst-case BER=1e-3 → P≈92)
-    // so we don't waste many frames on huge frames in bad channels.
-    double ber = 1e-3;
+    double ber = 1e-4;
 
     // Sliding window of last WIN transmissions for BER estimation
-    const int WIN = 16;
+    const int WIN = 128;
     double win_bits[WIN] = {};
     int    win_nak[WIN]  = {};
     int    win_idx   = 0;
