@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
 
     long pos = 0;
     while (pos < fsz) {
-        int P = min(optimal_payload(ber), (int)(fsz - pos));
+        int P = min(min(optimal_payload(ber), 20000), (int)(fsz - pos));
 
         // Build frame: [size 2B big-endian][payload P bytes][CRC 4B big-endian]
         frame[0] = (uint8_t)(P >> 8);
