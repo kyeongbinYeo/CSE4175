@@ -1,0 +1,17 @@
+# Validation 1: small network, stable topology, sparse traffic
+# Tests basic DV/LS convergence and forwarding correctness.
+NODES 5
+
+EDGE 0 1 3
+EDGE 0 2 5
+EDGE 1 2 1
+EDGE 1 3 4
+EDGE 2 4 2
+EDGE 3 4 6
+
+T 100 PKT 0 4
+T 200 PKT 3 2
+T 350 PKT 4 0
+T 500 PKT 0 3
+T 700 PKT 2 3
+T 900 PKT 4 1

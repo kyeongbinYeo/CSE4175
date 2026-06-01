@@ -1,0 +1,33 @@
+# Validation 2: medium network, some link changes, moderate traffic
+# Tests handling of cost changes and link up/down during operation.
+NODES 10
+
+# Outer ring 0-1-...-9-0
+EDGE 0 1 5
+EDGE 1 2 3
+EDGE 2 3 4
+EDGE 3 4 2
+EDGE 4 5 6
+EDGE 5 6 3
+EDGE 6 7 4
+EDGE 7 8 2
+EDGE 8 9 5
+EDGE 9 0 7
+
+# Chord edges across the ring
+EDGE 0 5 8
+EDGE 2 7 6
+EDGE 3 8 4
+
+T 100  PKT  0 5
+T 200  PKT  9 4
+T 300  PKT  1 7
+T 500  LINK 0 5 3
+T 600  PKT  0 5
+T 700  LINK 2 7 -1
+T 800  PKT  1 7
+T 1000 PKT  9 4
+T 1200 LINK 2 7 9
+T 1500 PKT  0 6
+T 2000 PKT  5 9
+T 2300 PKT  3 6

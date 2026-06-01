@@ -1,0 +1,61 @@
+# Validation 3: larger network, frequent changes, heavier traffic
+# Tests routing scalability and adaptation to dynamic topology.
+NODES 20
+
+# Two 10-node rings
+EDGE 0 1 4
+EDGE 1 2 3
+EDGE 2 3 5
+EDGE 3 4 2
+EDGE 4 5 6
+EDGE 5 6 4
+EDGE 6 7 3
+EDGE 7 8 5
+EDGE 8 9 2
+EDGE 9 0 7
+
+EDGE 10 11 3
+EDGE 11 12 4
+EDGE 12 13 5
+EDGE 13 14 2
+EDGE 14 15 6
+EDGE 15 16 4
+EDGE 16 17 3
+EDGE 17 18 5
+EDGE 18 19 2
+EDGE 19 10 7
+
+# Cross links between the rings
+EDGE 0 10 8
+EDGE 5 15 8
+EDGE 3 13 6
+EDGE 7 17 7
+
+T 200  PKT  0 14
+T 300  PKT  3 19
+T 400  PKT  8 12
+T 500  LINK 5 15 3
+T 600  PKT  5 15
+T 700  PKT  9 11
+T 850  LINK 0 1 -1
+T 900  PKT  9 1
+T 1000 PKT  1 16
+T 1150 LINK 12 13 10
+T 1200 PKT  10 14
+T 1300 PKT  17 4
+T 1500 LINK 0 1 4
+T 1600 PKT  0 7
+T 1750 LINK 3 13 2
+T 1800 PKT  3 16
+T 2000 PKT  6 18
+T 2100 PKT  2 13
+T 2300 PKT  19 8
+T 2500 LINK 5 15 -1
+T 2600 PKT  5 15
+T 2800 PKT  4 11
+T 3000 PKT  14 0
+T 3200 LINK 5 15 5
+T 3400 PKT  15 5
+T 3600 PKT  11 4
+T 3800 PKT  8 16
+T 4000 PKT  2 18
